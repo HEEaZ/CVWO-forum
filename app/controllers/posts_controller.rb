@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
+  skip_before_action :authenticate_request, only: [:index, :show]
   before_action :set_post, only: %i[ show update destroy ]
 
   # GET /posts
   def index
     @posts = Post.all
-
     render json: @posts, status: :ok
   end
 
