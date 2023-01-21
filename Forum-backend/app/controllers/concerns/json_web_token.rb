@@ -1,10 +1,11 @@
 require "jwt"
+TIMEOUT = 6.hour.from_now
 
 module JsonWebToken
     extend ActiveSupport::Concern
     SECRET_KEY = Rails.application.secret_key_base
 
-    def jwt_encode(payload, exp = 1.hour.from_now)
+    def jwt_encode(payload, exp = TIMEOUT)
         payload[:exp] = exp.to_i
         JWT.encode(payload, SECRET_KEY)
     end
