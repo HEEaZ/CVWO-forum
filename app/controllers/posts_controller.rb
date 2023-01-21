@@ -5,12 +5,12 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-    render json: @posts
+    render json: @posts, status: :ok
   end
 
   # GET /posts/1
   def show
-    render json: @post, except: :updated_at, include: :comments
+    render json: @post, except: :updated_at, include: :comments, status: :ok
   end
 
   # POST /posts
@@ -47,7 +47,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      puts params
       params.require(:post).permit(:title, :body)
     end
 end
