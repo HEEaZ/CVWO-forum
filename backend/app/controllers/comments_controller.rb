@@ -15,7 +15,9 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update(comment_params)
+    if @comment.user_id != @current_user
+      render json: { error: 'Unauthorized Action' }, status: :unauthorized
+    elsif @comment.update(comment_params)
         render json: @post, include: :comments
     else
       render json: @comment.errors, status: :unprocessable_entity
@@ -23,7 +25,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
+    if @comment.user_id == @current_user
+      @comment.destroy
+    else
+      render json: { error: 'Unauthorized Action' }, status: :unauthorized
+    end
   end
 
   private
