@@ -1,6 +1,7 @@
- import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+ import { createAsyncThunk, createSlice, TaskAbortError } from "@reduxjs/toolkit";
  import produce from "immer";
  import { RootState } from "../../app/store";
+ import { fetchPosts } from "./postAPI";
 
  export enum Statuses {
     Initial = "Not Fetched",
@@ -38,6 +39,14 @@
     status: Statuses.Initial
  }
 
+ export const fetchPostsAsync = createAsyncThunk(
+    'posts/fetchPosts',
+    async () => {
+         const response = await fetchPosts();
+         return response;
+    }
+ )
+
  export const postSlice = createSlice({
     name: "posts",
     initialState,
@@ -47,13 +56,16 @@
             .addCase(fetchPostsAsync.pending, (state) => {
                 state.status = Statuses.Loading;
             })
-            .addCase(fetchPostsAsync.fulfilled, (state) => {
+            .addCase(fetchPostsAsync.fulfilled, (state, action) => {
+                state.posts = action.payload;
                 state.status = Statuses.UpToDate;
             })
-            .addCase(fetchPostsAsync.error, (state) => {
+            .addCase(fetchPostsAsync.rejected, (state) => {
                 state.status = Statuses.Error
             })
     }
- })
+ });
 
- export const selectPosts = 
+ export const selectPosts = (state: RootState) => state.posts.posts
+ export const selectStatus = (state: RootState) => state.posts.status
+ export default postSlice.reducer
