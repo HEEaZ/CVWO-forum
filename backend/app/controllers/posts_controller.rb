@@ -5,12 +5,30 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.all
-    render json: @posts, status: :ok
+    render json: @posts.to_json(
+      include: {
+        user: { only: :username},
+      }), status: :ok
   end
 
   # GET /posts/1
   def show
-    render json: @post, except: :updated_at, include: :comments, status: :ok
+    # render json: @post, include: :comments, status: :ok
+    # render json: @post, include: ['comments', 'comments.user', 'user']
+    render json: @post.to_json(
+      include: {
+        comments: {
+          include: {
+            user: {
+              only: :username
+            }
+          }
+        },
+        user: {
+          only: :username
+        }
+      }
+    )
   end
 
   # POST /posts

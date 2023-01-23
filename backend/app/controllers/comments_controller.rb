@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 
     if @comment.save
         @post = Post.find(@comment.post_id)
-      render json: @post, include: :comments , status: :created, location: @post
+      render json: @post, include: :comments, status: :created, location: @post
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
