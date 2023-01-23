@@ -1,7 +1,7 @@
  import { createAsyncThunk, createSlice, TaskAbortError } from "@reduxjs/toolkit";
  import produce from "immer";
  import { RootState } from "../../app/store";
- import { fetchPosts } from "./postAPI";
+ import { fetchPosts, createPost } from "./postAPI";
 
  export enum Statuses {
     Initial = "Not Fetched",
@@ -18,11 +18,21 @@
     user_id: number;
     created_at: /*string*/ any;
     updated_at?: /*string*/ any; 
+    user: {
+        username: string
+    }
  }  
 
  export interface PostsState {
      posts: PostState[];
      status: string; 
+ }
+
+ export interface PostFormData {
+    post: {
+        title: string,
+        body: string
+    }
  }
 
  const initialState: PostsState = {
@@ -33,7 +43,10 @@
             body: "",
             user_id: 1,
             created_at: "",
-            updated_at: "Z"
+            updated_at: "Z",
+            user: {
+                username: ""
+            }
         }
     ],
     status: Statuses.Initial
@@ -47,12 +60,21 @@
     }
  )
 
+ export const createPostAsync = createAsyncThunk(
+    'posts/createPost',
+    async (payload: PostFormData) => {
+        const response = await createPost(payload);
+        return response; 
+    }
+ )
+
  export const postSlice = createSlice({
     name: "posts",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
+            /** Fetch post */
             .addCase(fetchPostsAsync.pending, (state) => {
                 state.status = Statuses.Loading;
             })
@@ -61,6 +83,16 @@
                 state.status = Statuses.UpToDate;
             })
             .addCase(fetchPostsAsync.rejected, (state) => {
+                state.status = Statuses.Error
+            })
+            /** Create post */
+            .addCase(createPostAsync.pending, (state) => {
+                state.status = Statuses.Loading;
+            })
+            .addCase(createPostAsync.fulfilled, (state, action) => {
+                state.status = Statuses.UpToDate;
+            })
+            .addCase(createPostAsync.rejected, (state) => {
                 state.status = Statuses.Error
             })
     }
