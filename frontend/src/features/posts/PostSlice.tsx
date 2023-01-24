@@ -11,6 +11,13 @@
     Error = "Error"
  }
 
+ export interface UserFormData { 
+    username: string 
+    email: string
+    password: string
+    password_confirmation: string
+}
+
  export interface PostState {
     id: number;
     title: string;

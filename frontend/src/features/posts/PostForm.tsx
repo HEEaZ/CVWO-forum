@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useAppDispatch } from '../../app/hooks'
 import { createPostAsync } from './PostSlice'
 
-function PostForm() {
-    const dispatch = useAppDispatch();
+function PostForm(props: any) {
+    const dispatch = props.dispatch;
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     

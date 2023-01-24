@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { AppDispatch } from '../../app/store';
 import Post from './Post';
 import PostForm from './PostForm';
 import { fetchPostsAsync, selectPosts, selectStatus, Statuses } from './PostSlice'
@@ -9,8 +11,10 @@ function Posts() {
   const status = useAppSelector(selectStatus);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchPostsAsync());
-  }, [])
+    if (status == Statuses.UpToDate) {
+        dispatch(fetchPostsAsync());
+    }
+  }, [dispatch])
   
   let contents;
 
@@ -20,7 +24,7 @@ function Posts() {
     contents = <div className="card">
         <div className="card-body">
             <h3>{status}</h3>
-            <PostForm />
+            <PostForm dispatch={dispatch}/>
             {posts && posts.length > 0 && posts.map(post => {
                 return (
                     <div key={post.id} style={{margin: "5em"}}>
