@@ -11,10 +11,10 @@ function Posts() {
   const status = useAppSelector(selectStatus);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (status == Statuses.UpToDate) {
+    if (status == Statuses.Initial || status == Statuses.UpToDate) {
         dispatch(fetchPostsAsync());
     }
-  }, [dispatch])
+  }, [])
   
   let contents;
 
@@ -24,7 +24,6 @@ function Posts() {
     contents = <div className="card">
         <div className="card-body">
             <h3>{status}</h3>
-            <PostForm dispatch={dispatch}/>
             {posts && posts.length > 0 && posts.map(post => {
                 return (
                     <div key={post.id} style={{margin: "5em"}}>

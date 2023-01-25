@@ -1,7 +1,10 @@
 import { Link, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Posts from './features/posts/Posts';
-import Registration from './Registration';
+import Home from './Components/Home';
+import Registration from './Components/Registration';
+import CreatePost from './Components/CreatePost';
+import Login from './Components/Login';
+import Logout from './Components/Logout';
 
 function App() {
   return (
@@ -20,18 +23,23 @@ function App() {
           <li>
             <Link to="/register">Register</Link>
           </li>
+          <li>
+            <Link to="/login">Log in</Link>
+          </li>
+          <li>
+            <Link to="/logout">Log out</Link>
+          </li>
         </ul>
       </nav>
-      <div className="App">
-        Hello World!
-        <Posts />
-      </div>
       <Routes>
-        {/* <Route path="/" element={ <Home /> } />
-        <Route path="/create" element={ <CreatePost /> } />
+        {/* 
         <Route path="/profile" element={ <Profile /> } />
-        <Route path="/login" element={ <Login /> } /> */}
+         */}
+        <Route path="/login" element={ <Login /> } />
+        <Route path="/" element={ <Home /> } />
+        <Route path="/create" element={ <CreatePost /> } />
         <Route path="/register" element={ <Registration />} />
+        <Route path="/logout" element={ <Logout />} />
         {/* <Route path="*" element={ <NotFound /> } /> */}
       </Routes>
     </>

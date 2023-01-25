@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { useAppDispatch } from '../../app/hooks'
 import { createPostAsync } from './PostSlice'
+import { useNavigate } from 'react-router-dom';
 
-function PostForm(props: any) {
-    const dispatch = props.dispatch;
+function PostForm() {
+    const dispatch = useAppDispatch();
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
-    
-    function submitHandler(e:any) {
+    const navigate = useNavigate();
+
+    const submitHandler = async (e:React.MouseEvent) => {
         e.preventDefault();
         const formData = {
             post: {
@@ -15,14 +17,18 @@ function PostForm(props: any) {
                 body: body
             }
         }
-        dispatch(createPostAsync(formData));
-        resetState();
+        await dispatch(createPostAsync(formData)).unwrap()
+            .then((response) => {
+                console.log(response)
+                if (response.status == 201) {
+                    navigate("/");
+                } else {
+                    localStorage.removeItem("token");
+                    navigate("/login");
+                }
+            });
     }
 
-    function resetState() {
-        setTitle("");
-        setBody(""); 
-    }
   return (
     <div>
         <h1>PostForm</h1>

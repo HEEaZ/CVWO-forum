@@ -1,5 +1,4 @@
- import { createAsyncThunk, createSlice, TaskAbortError } from "@reduxjs/toolkit";
- import produce from "immer";
+ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
  import { RootState } from "../../app/store";
  import { fetchPosts, createPost } from "./postAPI";
 
@@ -9,6 +8,11 @@
     UpToDate = "Up To Date",
     Deleted = "Deleted",
     Error = "Error"
+ }
+
+ export interface LoginFormData {
+    username: string
+    password: string
  }
 
  export interface UserFormData { 
@@ -96,10 +100,11 @@
             .addCase(createPostAsync.pending, (state) => {
                 state.status = Statuses.Loading;
             })
-            .addCase(createPostAsync.fulfilled, (state, action) => {
+            .addCase(createPostAsync.fulfilled, (state) => {
                 state.status = Statuses.UpToDate;
             })
             .addCase(createPostAsync.rejected, (state) => {
+                console.log("error reached")
                 state.status = Statuses.Error
             })
     }
