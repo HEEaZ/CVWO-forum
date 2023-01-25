@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     render json: @posts.to_json(
       include: {
-        user: { only: :username},
+        user: {only: :username},
       }), status: :ok
   end
 
