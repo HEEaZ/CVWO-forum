@@ -13,8 +13,6 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
-    # render json: @post, include: :comments, status: :ok
-    # render json: @post, include: ['comments', 'comments.user', 'user']
     render json: @post.to_json(
       include: {
         comments: {
