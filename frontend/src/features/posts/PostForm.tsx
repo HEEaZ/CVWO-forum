@@ -22,6 +22,8 @@ function PostForm() {
                 console.log(response)
                 if (response.status == 201) {
                     navigate("/");
+                } else if (response.status == 422) {
+                    alert(JSON.stringify(response.data));
                 } else {
                     navigate("/login");
                 }

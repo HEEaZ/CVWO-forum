@@ -71,7 +71,7 @@ export const createCommentAsync = createAsyncThunk(
     'singlePost/createComment',
     async (payload: CommentFormState) => {
         const response = await createComment(payload);
-        if (response.status !== 201) {
+        if (response.status == 401) {
             localStorage.removeItem("token")
         }
         return response;
