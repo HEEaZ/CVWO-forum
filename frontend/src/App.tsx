@@ -5,6 +5,7 @@ import Registration from './Components/Registration';
 import CreatePost from './Components/CreatePost';
 import Login from './Components/Login';
 import Logout from './Components/Logout';
+import SinglePost from './Components/SinglePost';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/create" element={ <CreatePost /> } />
         <Route path="/register" element={ <Registration />} />
         <Route path="/logout" element={ <Logout />} />
+        <Route path="/posts/:id" element={< SinglePost />} />
         {/* <Route path="*" element={ <NotFound /> } /> */}
       </Routes>
     </>

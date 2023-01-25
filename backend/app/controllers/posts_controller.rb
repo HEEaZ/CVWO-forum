@@ -20,7 +20,8 @@ class PostsController < ApplicationController
             user: {
               only: :username
             }
-          }
+          },
+          except: [:post_id],
         },
         user: {
           only: :username

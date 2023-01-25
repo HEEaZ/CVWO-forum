@@ -1,20 +1,24 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { AppDispatch } from '../../app/store';
 import Post from './Post';
 import PostForm from './PostForm';
-import { fetchPostsAsync, selectPosts, selectStatus, Statuses } from './PostSlice'
+import { fetchPostsAsync, selectPosts, selectStatus, Statuses } from './postsSlice'
 
 function Posts() {
   const posts = useAppSelector(selectPosts);
   const status = useAppSelector(selectStatus);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
-    if (status == Statuses.Initial || status == Statuses.UpToDate) {
-        dispatch(fetchPostsAsync());
-    }
+      dispatch(fetchPostsAsync());
   }, [])
+
+  const handleClick = (postId: number) => {
+    navigate(`/posts/${postId}`);
+  }
   
   let contents;
 
@@ -24,9 +28,9 @@ function Posts() {
     contents = <div className="card">
         <div className="card-body">
             <h3>{status}</h3>
-            {posts && posts.length > 0 && posts.map(post => {
+            {posts.map(post => {
                 return (
-                    <div key={post.id} style={{margin: "5em"}}>
+                    <div key={post.id} style={{margin: "5em"}} onClick={() => handleClick(post.id)}>
                         <Post 
                             dispatch={dispatch}
                             post={post} />

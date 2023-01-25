@@ -1,7 +1,7 @@
 import React, {useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { signUp } from '../features/auth-service';
-import { UserFormData } from '../features/posts/PostSlice';
+import { UserFormData } from '../features/posts/postsSlice';
 
 function Registration() {
     const initialValues = {username: "", email: "", password: "", password_confirmation: ""}

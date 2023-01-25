@@ -1,4 +1,4 @@
-import { PostFormData, PostState } from "./PostSlice";
+import { PostFormData, PostState } from "./postsSlice";
 import axios from "axios";
 
 const API_URL = "http://localhost:3000";
@@ -21,8 +21,6 @@ export async function createPost(payload: PostFormData) {
     return axios.post(`${API_URL}/posts`, payload, config)
         .then(response => response)
         .catch(error => {
-            // console.log("Error: ", error);
-            // return {} as PostState;
             return error.response
         });
 }

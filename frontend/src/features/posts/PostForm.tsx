@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAppDispatch } from '../../app/hooks'
-import { createPostAsync } from './PostSlice'
+import { createPostAsync } from './postsSlice'
 import { useNavigate } from 'react-router-dom';
 
 function PostForm() {
@@ -23,7 +23,6 @@ function PostForm() {
                 if (response.status == 201) {
                     navigate("/");
                 } else {
-                    localStorage.removeItem("token");
                     navigate("/login");
                 }
             });
