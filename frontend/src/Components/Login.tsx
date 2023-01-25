@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 import { login } from '../features/auth-service';
+import { Link } from 'react-router-dom';
 
 function Login() {
     const initialValues = {username: "", password: ""}
@@ -29,30 +30,33 @@ function Login() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>Login</h1>
-            <div>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <h1>Login</h1>
                 <div>
-                    <label>Username</label>
-                    <input 
-                        type="text" 
-                        name="username" 
-                        placeholder="Username" 
-                        value={formData.username}
-                        onChange={handleChange}/>
+                    <div>
+                        <label>Username</label>
+                        <input 
+                            type="text" 
+                            name="username" 
+                            placeholder="Username" 
+                            value={formData.username}
+                            onChange={handleChange}/>
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            placeholder="Password" 
+                            value={formData.password}
+                            onChange={handleChange}/>
+                    </div>
+                    <button type="submit">Login</button>
                 </div>
-                <div>
-                    <label>Password</label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        placeholder="Password" 
-                        value={formData.password}
-                        onChange={handleChange}/>
-                </div>
-                <button type="submit">Login</button>
-            </div>
-        </form>
+            </form>
+            <Link to="/register">Register</Link>
+        </div>
     )
 }
 

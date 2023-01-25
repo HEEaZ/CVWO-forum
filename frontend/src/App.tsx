@@ -1,6 +1,7 @@
 import { Link, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './Components/Home';
+import { useEffect } from 'react';
 import Registration from './Components/Registration';
 import CreatePost from './Components/CreatePost';
 import Login from './Components/Login';
@@ -8,6 +9,12 @@ import Logout from './Components/Logout';
 import SinglePost from './Components/SinglePost';
 
 function App() {
+  let loggedIn;
+  useEffect(() => {
+    loggedIn = localStorage.getItem("token")
+    console.log(loggedIn);
+  }, [])
+  
   return (
     <>
       <nav>
@@ -19,14 +26,8 @@ function App() {
             <Link to="/create">Create new Post</Link>
           </li>
           <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li>
-            <Link to="/register">Register</Link>
-          </li>
-          <li>
             <Link to="/login">Log in</Link>
-          </li>
+          </li> 
           <li>
             <Link to="/logout">Log out</Link>
           </li>
