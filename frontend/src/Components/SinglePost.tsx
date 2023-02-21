@@ -20,6 +20,16 @@ function SinglePost() {
   const createdAt = <span>Created at: {new Date(post.created_at).toDateString()}</span>;
   const updatedAt = post.created_at == post.updated_at ? null : <span>Updated at: {new Date(post.updated_at).toDateString()}</span>;
 
+  const commentsEl = post.comments?.length === 0 
+    ? <div>No comments yet</div> 
+    : post.comments?.map((comment) => {
+      return (
+        <div key={comment.id}>
+          <Comment comment={comment} />
+      </div>
+      )
+    })
+
   let content;
   if (status !== Statuses.UpToDate) {
     content = <div>{status}</div>
@@ -35,13 +45,7 @@ function SinglePost() {
         <br/>
         <div>
             <h2>Comments:</h2>
-            {post.comments?.map((comment) => {
-                return (
-                    <div key={comment.id}>
-                        <Comment comment={comment} />
-                    </div>
-                )
-            })}
+            {commentsEl}
             {user.id === 0 ? <div><Link to="/login">Log in</Link> to comment</div> : <CommentForm postId={id}/>}
         </div>
     </div>
