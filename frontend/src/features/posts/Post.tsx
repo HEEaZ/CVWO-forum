@@ -4,9 +4,9 @@ function Post(props:any) {
     const titleElement = <h2 className="title text-start">{props.post.title}</h2>;
     const authorElement = <b className="card-text text-start">By {props.post.user.username}</b>
     const bodyElement = <p className="card-text text-start">{props.post.body }</p>;
-    const tagElement = props.post.tags.map((tag: string) => {
+    const tagElement = props.post.tags.map((tag: string, index: number) => {
         return (
-            <span>{tag}</span>
+            <span key={index}>{tag}</span>
         );
     })
 

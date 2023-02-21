@@ -17,14 +17,21 @@ function Posts() {
   }, [])
 
   const [search, setSearch] = useState("");
-  const getFilteredPosts = (search: string, items: PostState[]) => {
+  const getFilteredPosts = (search: string) => {
     if (!search) {
       return posts;
     }
-    return items.filter((item: PostState) => 
-      item.title.includes(search) || item.body.includes(search) || item.user.username.includes(search));
+    let filtered = posts;
+    const searchWords = search.match(/\b(\w+)\b/g);
+    searchWords?.forEach((word:string) => {
+      filtered = filtered.filter((post: PostState) => {
+        const stringmass = post.title + post.body + post.user.username + post.tags.toString();
+        return stringmass.includes(word);
+      })
+    })
+    return filtered;
   }
-  const filteredItems = getFilteredPosts(search, posts);
+  const filteredItems = getFilteredPosts(search);
 
   const handleClick = (postId: number) => {
     navigate(`/posts/${postId}`);

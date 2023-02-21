@@ -32,6 +32,7 @@
     user: {
         username: string
     }
+    tags: string[];
  }  
 
  export interface PostsState {
@@ -58,7 +59,8 @@
             updated_at: "Z",
             user: {
                 username: ""
-            }
+            },
+            tags: []
         }
     ],
     status: Statuses.Initial
