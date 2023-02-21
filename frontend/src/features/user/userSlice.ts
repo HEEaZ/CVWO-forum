@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, isRejectedWithValue } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { Statuses } from "../posts/postsSlice";
 import { login } from "../auth-service";
@@ -59,7 +59,6 @@ export const userSlice = createSlice({
                state.status = Statuses.Loading;
            })
            .addCase(loginAsync.fulfilled, (state, action) => {
-                console.log("fulfilled");
                 if (action.payload.status === 200) {
                     state.user = action.payload.data.user;
                     localStorage.setItem("token", action.payload.data.token)

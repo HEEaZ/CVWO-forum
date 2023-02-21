@@ -19,7 +19,7 @@ function SinglePost() {
   }, [])
 
   const createdAt = <span>Created at: {new Date(post.created_at).toDateString()}</span>;
-  const updatedAt = post.created_at == post.updated_at ? null : <span>Updated at: {new Date(post.updated_at).toDateString()}</span>;
+  const updatedAt = post.created_at === post.updated_at ? null : <span>Updated at: {new Date(post.updated_at).toDateString()}</span>;
 
   const commentsEl = post.comments?.length === 0 
     ? <div>No comments yet</div> 
@@ -34,11 +34,10 @@ function SinglePost() {
   const deletePost = (e:React.MouseEvent<HTMLButtonElement>) => {
     dispatch(deletePostAsync(id)).unwrap()
       .then((response) => {
-        if (response.status === 204) {
-          navigate("/")
-        } else {
+        if (response) {
           navigate("/logout")
         }
+        navigate("/")
       })
   }
 

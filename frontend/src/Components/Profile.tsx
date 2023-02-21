@@ -5,6 +5,7 @@ import Post from "../features/posts/Post";
 import { useNavigate } from "react-router-dom";
 
 
+
 function Profile() {
     const user = useSelector(selectUser);
     const posts = useSelector(selectPosts);
@@ -12,11 +13,8 @@ function Profile() {
     const handleClick = (postId: number) => {
         navigate(`/posts/${postId}`);
       }
-
+    
     const ownPosts = posts.filter((post) => post.user_id === user.id);
-    console.log(ownPosts);
-    console.log(posts);
-    console.log(user.id);
     const ownPostsEl = ownPosts.length === 0 
         ? <div>You do not have any posts</div>
         : ownPosts.map((post) => (

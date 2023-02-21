@@ -4,7 +4,6 @@ import { useAppDispatch } from '../app/hooks';
 import { logout } from '../features/user/userSlice';
 
 
-
 function Logout() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();

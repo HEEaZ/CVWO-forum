@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { login } from '../features/auth-service';
 import { Link } from 'react-router-dom';
 import { loginAsync } from '../features/user/userSlice';
 import { useAppDispatch } from '../app/hooks';
@@ -14,8 +13,7 @@ function Login() {
         e.preventDefault();
         await dispatch(loginAsync(formData)).unwrap()
             .then((response) => {
-                console.log(response)
-                if (response.status == 200) {
+                if (response.status === 200) {
                     navigate("/");
                 } else {
                     alert(JSON.stringify(response.data));

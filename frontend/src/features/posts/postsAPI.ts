@@ -8,7 +8,6 @@ export async function fetchPosts() {
     return axios.get(`${API_URL}/posts`)
         .then(response => response.data)
         .catch(error => {
-            console.log("Error: ", error);
             return {} as PostState;
         });
 }

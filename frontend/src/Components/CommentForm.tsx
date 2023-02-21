@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../app/hooks';
 import { createCommentAsync } from '../features/singlePost/singlePostSlice';
 
@@ -21,8 +21,7 @@ function CommentForm(props:any) {
         }
         await dispatch(createCommentAsync(formData)).unwrap()
             .then((response) => {
-                console.log(response)
-                if (response.status == 201) {
+                if (response.status === 201) {
                     window.location.reload();
                 } else {
                     navigate("/logout");

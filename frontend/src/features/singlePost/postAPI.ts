@@ -7,7 +7,6 @@ export async function fetchPost(postId: number) {
     return axios.get(`${API_URL}/posts/${postId}`)
         .then(response => response.data)
         .catch(error => {
-            console.log("Error: ", error);
             return {} as SinglePostState;
         });
 }

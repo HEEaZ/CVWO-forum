@@ -54,10 +54,9 @@ function PostForm() {
         }
         await dispatch(createPostAsync(submitData)).unwrap()
             .then((response) => {
-                console.log(response)
-                if (response.status == 201) {
+                if (response.status === 201) {
                     navigate("/");
-                } else if (response.status == 422) {
+                } else if (response.status === 422) {
                     alert(JSON.stringify(response.data));
                 } else {
                     navigate("/logout");

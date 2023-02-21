@@ -19,10 +19,9 @@ function Registration() {
         setFormErrors(errors);
         if (Object.keys(errors).length === 0) {
             await signUp(formData).then((response) => {
-                if (response.status == 201) {
+                if (response.status === 201) {
                     navigate("/login");
                 } else {
-                    console.log(response.data)
                     alert(response.data?.errors[0])
                 }
             });
@@ -41,7 +40,7 @@ function Registration() {
         }
         if (!formValues.password || !passwordRegex.test(formValues.password)) {
             errors.password = "Password must have a minimum of 8 characters, with at least 1 letter, 1 number, and 1 special character!"
-        } else if (formValues.password != formValues.password_confirmation) {
+        } else if (formValues.password !== formValues.password_confirmation) {
             errors.password_confirmation = "Passwords do not match!"
         }
         return errors;

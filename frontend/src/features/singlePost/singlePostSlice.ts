@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { RootState} from '../../app/store';
 import { fetchPost, createComment, deletePost } from './postAPI';
 import { Statuses } from '../posts/postsSlice';
 

@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { AppDispatch } from '../../app/store';
 import Post from './Post';
-import PostForm from './PostForm';
-import { fetchPostsAsync, PostsState, PostState, selectPosts, selectStatus, Statuses } from './postsSlice'
+import { fetchPostsAsync, PostState, selectPosts, selectStatus, Statuses } from './postsSlice'
 
 function Posts() {
   const posts = useAppSelector(selectPosts);
