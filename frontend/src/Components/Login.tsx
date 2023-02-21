@@ -1,23 +1,26 @@
 import React, { useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../features/auth-service';
 import { Link } from 'react-router-dom';
+import { loginAsync } from '../features/user/userSlice';
+import { useAppDispatch } from '../app/hooks';
 
 function Login() {
-    const initialValues = {username: "", password: ""}
-    const [formData, setFormData] = useState(initialValues);
+    const [formData, setFormData] = useState({username: "", password: ""});
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        await login(formData)
+        await dispatch(loginAsync(formData)).unwrap()
             .then((response) => {
+                console.log(response)
                 if (response.status == 200) {
                     navigate("/");
                 } else {
-                    alert(response.data.error);
+                    alert(JSON.stringify(response.data));
                 }
-            })
+            });
     }
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {

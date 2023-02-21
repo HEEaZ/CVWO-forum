@@ -1,15 +1,17 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useEffect } from 'react';
 import { fetchPostAsync, selectSinglePost, selectSinglePostStatus } from '../features/singlePost/singlePostSlice';
 import { useAppSelector, useAppDispatch } from '../app/hooks';
 import { Statuses } from '../features/posts/postsSlice';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
+import { selectUser } from '../features/user/userSlice';
 
 function SinglePost() {
   const id = parseInt(useParams().id!);
   const post = useAppSelector(selectSinglePost);
   const status = useAppSelector(selectSinglePostStatus);
+  const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchPostAsync(id));
@@ -40,7 +42,7 @@ function SinglePost() {
                     </div>
                 )
             })}
-            <CommentForm postId={id}/>
+            {user.id === 0 ? <div><Link to="/login">Log in</Link> to comment</div> : <CommentForm postId={id}/>}
         </div>
     </div>
   }

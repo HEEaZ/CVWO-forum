@@ -23,7 +23,6 @@ export const login = (loginForm: LoginFormData) => {
         API_URL + '/login',
         loginForm
     ).then(((response) => {
-        localStorage.setItem("token", response.data.token)
         return response;
     })).catch((err) => {
         return err.response;
