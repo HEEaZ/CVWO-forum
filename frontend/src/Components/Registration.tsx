@@ -4,8 +4,7 @@ import { signUp } from '../features/auth-service';
 import { UserFormData } from '../features/posts/postsSlice';
 
 function Registration() {
-    const initialValues = {username: "", email: "", password: "", password_confirmation: ""}
-    const [formData, setFormData] = useState(initialValues);
+    const [formData, setFormData] = useState({username: "", email: "", password: "", password_confirmation: ""});
     const [formErrors, setFormErrors] = useState<{[key: string]: string}>({});
     const navigate = useNavigate();
 

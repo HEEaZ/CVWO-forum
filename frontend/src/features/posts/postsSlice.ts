@@ -42,7 +42,8 @@
  export interface PostFormData {
     post: {
         title: string,
-        body: string
+        body: string,
+        tags: string[]
     }
  }
 
@@ -75,9 +76,6 @@
     'posts/createPost',
     async (payload: PostFormData) => {
         const response = await createPost(payload);
-        if (response.status == 401) {
-            localStorage.removeItem("token")
-        }
         return response;
     }
  )
