@@ -17,18 +17,17 @@ function Registration() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const errors = validate(formData)
-        if (Object.keys(errors).length === 0) {
-            console.log("Submit Form")
-        }
         setFormErrors(errors);
-        await signUp(formData).then((response) => {
-            if (response.status == 200) {
-                navigate("/login");
-            } else {
-                console.log(response.data)
-                alert(response.data?.errors[0])
-            }
-        });
+        if (Object.keys(errors).length === 0) {
+            await signUp(formData).then((response) => {
+                if (response.status == 201) {
+                    navigate("/login");
+                } else {
+                    console.log(response.data)
+                    alert(response.data?.errors[0])
+                }
+            });
+        }
     }
 
     const validate = (formValues: UserFormData) => {

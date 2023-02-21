@@ -8,7 +8,6 @@ function Login() {
     const [formData, setFormData] = useState(initialValues);
     const navigate = useNavigate();
 
-
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         await login(formData)
