@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../app/store';
-import { fetchPost, createComment } from './postAPI';
+import { fetchPost, createComment, deletePost } from './postAPI';
 import { Statuses } from '../posts/postsSlice';
 
 
@@ -71,11 +71,16 @@ export const createCommentAsync = createAsyncThunk(
     'singlePost/createComment',
     async (payload: CommentFormState) => {
         const response = await createComment(payload);
-        if (response.status == 401) {
-            localStorage.removeItem("token")
-        }
         return response;
     }
+)
+
+export const deletePostAsync = createAsyncThunk(
+  'singlePost/deletePost',
+  async (id: number) => {
+    const response = await deletePost(id);
+    return response;
+  }
 )
 
 export const singlePostSlice = createSlice({

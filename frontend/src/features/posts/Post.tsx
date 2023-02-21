@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import { PostState } from "./postsSlice";
 
-function Post(props:any) {
+interface PropState {
+    post: PostState
+}
+
+function Post(props:PropState) {
     const titleElement = <h2 className="title text-start">{props.post.title}</h2>;
     const authorElement = <b className="card-text text-start">By {props.post.user.username}</b>
     const bodyElement = <p className="card-text text-start">{props.post.body }</p>;

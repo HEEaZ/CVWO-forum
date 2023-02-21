@@ -38,7 +38,7 @@ const initialState: UserState = {
 
 export const loginAsync = createAsyncThunk(
    'user/login',
-   async (payload: LoginFormData, {rejectWithValue}) => {
+   async (payload: LoginFormData) => {
         const response = await login(payload);
         return response;
    }

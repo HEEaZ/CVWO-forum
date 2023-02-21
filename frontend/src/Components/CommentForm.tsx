@@ -25,7 +25,7 @@ function CommentForm(props:any) {
                 if (response.status == 201) {
                     window.location.reload();
                 } else {
-                    navigate("/login");
+                    navigate("/logout");
                 }
             });
     }

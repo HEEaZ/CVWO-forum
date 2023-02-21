@@ -7,15 +7,14 @@ import Login from './Components/Login';
 import Logout from './Components/Logout';
 import SinglePost from './Components/SinglePost';
 import Navbar from './Components/Navbar';
+import Profile from './Components/Profile'
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-        {/* 
         <Route path="/profile" element={ <Profile /> } />
-         */}
         <Route path="/login" element={ <Login /> } />
         <Route path="/" element={ <Home /> } />
         <Route path="/create" element={ <CreatePost /> } />

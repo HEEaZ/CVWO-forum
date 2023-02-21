@@ -48,7 +48,6 @@ function Posts() {
                 return (
                     <div key={post.id} style={{margin: "5em"}} onClick={() => handleClick(post.id)}>
                         <Post 
-                            dispatch={dispatch}
                             post={post} />
                     </div>
                 )

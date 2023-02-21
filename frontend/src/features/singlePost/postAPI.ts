@@ -23,3 +23,13 @@ export async function createComment(commentData: CommentFormState) {
             return error.response
         });
 }
+
+export async function deletePost(postId: number) {
+    const token = localStorage.getItem("token");
+    const config = {
+        headers: { Authorization: `Bearer ${token}`}
+    }
+    return axios.delete(`${API_URL}/posts/${postId}`, config)
+        .then(response => response.data)
+        .catch(err => err.response)
+}

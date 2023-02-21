@@ -1,6 +1,6 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react';
-import { fetchPostAsync, selectSinglePost, selectSinglePostStatus } from '../features/singlePost/singlePostSlice';
+import { deletePostAsync, fetchPostAsync, selectSinglePost, selectSinglePostStatus } from '../features/singlePost/singlePostSlice';
 import { useAppSelector, useAppDispatch } from '../app/hooks';
 import { Statuses } from '../features/posts/postsSlice';
 import Comment from './Comment';
@@ -13,6 +13,7 @@ function SinglePost() {
   const status = useAppSelector(selectSinglePostStatus);
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchPostAsync(id));
   }, [])
@@ -28,7 +29,18 @@ function SinglePost() {
           <Comment comment={comment} />
       </div>
       )
-    })
+    });
+
+  const deletePost = (e:React.MouseEvent<HTMLButtonElement>) => {
+    dispatch(deletePostAsync(id)).unwrap()
+      .then((response) => {
+        if (response.status === 204) {
+          navigate("/")
+        } else {
+          navigate("/logout")
+        }
+      })
+  }
 
   let content;
   if (status !== Statuses.UpToDate) {
@@ -47,6 +59,10 @@ function SinglePost() {
             <h2>Comments:</h2>
             {commentsEl}
             {user.id === 0 ? <div><Link to="/login">Log in</Link> to comment</div> : <CommentForm postId={id}/>}
+        </div>
+        <div>
+          {user.id === post.user_id && 
+            <button onClick={deletePost}>Delete Post</button>}
         </div>
     </div>
   }

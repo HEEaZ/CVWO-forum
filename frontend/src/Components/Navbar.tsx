@@ -12,13 +12,18 @@ function Navbar() {
             <Link to="/">Home</Link>
           </li>
           {user.id !== 0 && 
-          <li>
-             <Link to="/create">Create new Post</Link>
-          </li>
+            <li>
+                <Link to="/create">Create new Post</Link>
+            </li>
           }
+          {user.id !== 0 && 
+            <li>
+                <Link to="/profile">Profile</Link>
+            </li>}
           <li>
             {user.id === 0 ? <Link to="/login">Log in</Link> : <Link to="/logout">Log out</Link>}
-          </li> 
+          </li>
+          
         </ul>
       </nav>
   )
