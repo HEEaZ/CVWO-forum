@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { deletePostAsync, fetchPostAsync, selectSinglePost, selectSinglePostStatus } from '../features/singlePost/singlePostSlice';
 import { useAppSelector, useAppDispatch } from '../app/hooks';
 import { Statuses } from '../features/enums';
@@ -15,9 +15,10 @@ function SinglePost() {
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [refresh, setRefresh] = useState(true);
   useEffect(() => {
     dispatch(fetchPostAsync(id));
-  }, [])
+  }, [refresh])
 
   const createdAt = <span>Created at: {new Date(post.created_at).toDateString()}</span>;
   const updatedAt = post.created_at === post.updated_at ? null : <span>Updated at: {new Date(post.updated_at).toDateString()}</span>;
@@ -31,6 +32,10 @@ function SinglePost() {
         </div>
       )
     });
+
+  const toggleRefresh = () => {
+    setRefresh((prevState) => (!prevState));
+  }
 
   const deletePost = (e:React.MouseEvent<HTMLButtonElement>) => {
     dispatch(deletePostAsync(id)).unwrap()
@@ -64,7 +69,7 @@ function SinglePost() {
         <div>
             <h2 className='text-2xl font-bold'>Comments:</h2>
             {commentsEl}
-            {user.id === 0 ? <div><Link to="/login">Log in</Link> to comment</div> : <CommentForm postId={id}/>}
+            {user.id === 0 ? <div><Link to="/login">Log in</Link> to comment</div> : <CommentForm postId={id} toggleRefresh={toggleRefresh}/>}
         </div>
         
     </div>

@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../app/hooks';
 import { createCommentAsync } from '../features/singlePost/singlePostSlice';
-import { logout } from '../features/user/userSlice';
 
 interface PropState{
+    toggleRefresh: () => void,
     postId: number
 }
 
@@ -27,7 +27,7 @@ function CommentForm(props:PropState) {
         await dispatch(createCommentAsync(formData)).unwrap()
             .then((response) => {
                 if (response.status === 201) {
-                    window.location.reload();
+                    props.toggleRefresh();
                 } else {
                     navigate("/login");
                 }
