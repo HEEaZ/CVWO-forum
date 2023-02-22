@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../app/hooks';
 import { createCommentAsync } from '../features/singlePost/singlePostSlice';
+import { logout } from '../features/user/userSlice';
 
 interface PropState{
     postId: number
@@ -28,7 +29,7 @@ function CommentForm(props:PropState) {
                 if (response.status === 201) {
                     window.location.reload();
                 } else {
-                    navigate("/logout");
+                    navigate("/login");
                 }
             });
     }

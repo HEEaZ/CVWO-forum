@@ -1,7 +1,7 @@
 import React, {useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { signUp } from '../features/auth-service';
-import { UserFormData } from '../features/posts/postsSlice';
+import { UserFormData } from '../features/enums';
 
 function Registration() {
     const [formData, setFormData] = useState({username: "", email: "", password: "", password_confirmation: ""});

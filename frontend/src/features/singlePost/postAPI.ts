@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CommentFormState, SinglePostState } from "./singlePostSlice";
+import { CommentFormState, SinglePostState } from "../enums";
 
 const API_URL = "http://localhost:3000";
 

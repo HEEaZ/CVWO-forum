@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import Post from './Post';
-import { fetchPostsAsync, PostState, selectPosts, selectStatus, Statuses } from './postsSlice'
+import { fetchPostsAsync, selectPosts, selectStatus} from './postsSlice'
+import { PostState, Statuses } from '../enums';
 
 function Posts() {
   const posts = useAppSelector(selectPosts);

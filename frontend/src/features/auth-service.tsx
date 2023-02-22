@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LoginFormData, UserFormData } from "./posts/postsSlice";
+import { UserFormData, LoginFormData } from "./enums";
 
 const API_URL = "http://localhost:3000";
 

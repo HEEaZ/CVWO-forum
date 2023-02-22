@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react';
 import { deletePostAsync, fetchPostAsync, selectSinglePost, selectSinglePostStatus } from '../features/singlePost/singlePostSlice';
 import { useAppSelector, useAppDispatch } from '../app/hooks';
-import { Statuses } from '../features/posts/postsSlice';
+import { Statuses } from '../features/enums';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
 import { selectUser } from '../features/user/userSlice';

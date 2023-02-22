@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useAppDispatch } from '../../app/hooks'
 import { createPostAsync } from './postsSlice'
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../user/userSlice'
 
 function PostForm() {
     const dispatch = useAppDispatch();
@@ -55,11 +56,12 @@ function PostForm() {
         await dispatch(createPostAsync(submitData)).unwrap()
             .then((response) => {
                 if (response.status === 201) {
-                    navigate("/");
+                    const postId = response.data.id;
+                    navigate(`/posts/${postId}`);
                 } else if (response.status === 422) {
                     alert(JSON.stringify(response.data));
                 } else {
-                    navigate("/logout");
+                    navigate("/login");
                 }
             });
     }

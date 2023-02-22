@@ -1,47 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState} from '../../app/store';
 import { fetchPost, createComment, deletePost } from './postAPI';
-import { Statuses } from '../posts/postsSlice';
-
-
-export interface CommentState {
-    id: number
-    body: string
-    user_id: number
-    created_at: /*string*/ any
-    updated_at: /*string*/ any
-    user: {
-        username: string
-    }
-}
-
-export interface PostState {
-    id: number
-    title: string
-    body: string
-    user_id: number
-    created_at: /*string*/ any
-    updated_at: /*string*/ any
-    comments?: CommentState[]
-    user: {
-        username: string
-    }
-}
-
-export interface CommentFormState {
-    postId: number;
-    comment: {
-        body: string
-    }
-}
-
-export interface SinglePostState {
-  post: PostState
-  status: Statuses;
-}
+import { logout } from '../user/userSlice';
+import { SinglePostState, Statuses, CommentFormState } from '../enums';
 
 const initialState: SinglePostState = {
-  post: {id: 0, title: "", body: "", user_id: 0, created_at: "", updated_at: "", user: {username: ""}},
+  post: {id: 0, title: "", body: "", user_id: 0, created_at: "", updated_at: "", user: {username: ""}, tags: []},
   status: Statuses.Initial,
 };
 
@@ -71,6 +35,9 @@ export const createCommentAsync = createAsyncThunk(
     'singlePost/createComment',
     async (payload: CommentFormState) => {
         const response = await createComment(payload);
+        if (response.status === 401) {
+          logout();
+        }
         return response;
     }
 )
@@ -79,6 +46,9 @@ export const deletePostAsync = createAsyncThunk(
   'singlePost/deletePost',
   async (id: number) => {
     const response = await deletePost(id);
+    if (response?.status === 401) {
+      logout();
+    } 
     return response;
   }
 )

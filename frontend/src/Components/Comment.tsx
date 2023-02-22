@@ -1,5 +1,4 @@
-import React from 'react'
-import { CommentState } from '../features/singlePost/singlePostSlice';
+import { CommentState } from '../features/enums';
 
 interface PropState {
   comment: CommentState

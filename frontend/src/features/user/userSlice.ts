@@ -1,31 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import { Statuses } from "../posts/postsSlice";
 import { login } from "../auth-service";
-
-export interface UserData {
-    id: number,
-    username: string,
-    email: string,
-}
-
-export interface UserState {
-    user: UserData,
-    status: string
-}
-
-export interface UserFormData { 
-    username: string 
-    email: string
-    password: string
-    password_confirmation: string
-}
-
-export interface LoginFormData {
-    username: string
-    password: string
- }
-
+import { UserState, Statuses, LoginFormData } from "../enums";
 
 const initialState: UserState = {
     user: {
@@ -49,6 +25,7 @@ export const userSlice = createSlice({
    initialState,
    reducers: {
         logout: (state) => {
+            localStorage.removeItem("token");
             return initialState;
         }
    },
