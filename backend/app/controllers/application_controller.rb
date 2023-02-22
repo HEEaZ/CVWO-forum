@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
         if !decoded || !User.exists?(decoded[:user_id])
             return render json: { message: 'Unauthorized' }, status: :unauthorized
         else
-            @current_user = decoded[:user_id]
+            @current_user = decoded
         end
     end
 end

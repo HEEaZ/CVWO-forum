@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.create(comment_params)
-    @comment.user_id = @current_user
+    @comment.user_id = @current_user[:user_id]
 
     if @comment.save
         @post = Post.find(@comment.post_id)
@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.user_id != @current_user
+    if @comment.user_id != @current_user[:user_id]
       render json: { error: 'Unauthorized Action' }, status: :unauthorized
     elsif @comment.update(comment_params)
         render json: @post, include: :comments
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    if @comment.user_id == @current_user
+    if @comment.user_id == @current_user[:user_id]
       @comment.destroy
     else
       render json: { error: 'Unauthorized Action' }, status: :unauthorized

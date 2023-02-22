@@ -4,7 +4,7 @@ class AuthenticationController < ApplicationController
     def login
         @user = User.find_by_username(params[:username])
         if @user&.authenticate(params[:password])
-            token = jwt_encode(user_id: @user.id)
+            token = jwt_encode(user_id: @user.id, user_username: @user.username, user_email: @user.email)
             render json: { token: token, user: @user.as_json(only: [:id, :username, :email]) }, status: :ok
         else
             render json: { error: 'Invalid Credentials' }, status: :unauthorized

@@ -33,7 +33,7 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
-    @post.user_id = @current_user
+    @post.user_id = @current_user[:user_id]
 
     if @post.save
       render json: @post, status: :created, location: @post
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
-    if @post.user_id != @current_user
+    if @post.user_id != @current_user[:user_id]
       render json: { error: 'Unauthorized Action' }, status: :unauthorized
     elsif @post.update(post_params)
       render json: @post
@@ -55,7 +55,7 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1
   def destroy
-    if @post.user_id == @current_user
+    if @post.user_id == @current_user[:user_id]
       @post.destroy
     else
       render json: { error: 'Unauthorized Action' }, status: :unauthorized
