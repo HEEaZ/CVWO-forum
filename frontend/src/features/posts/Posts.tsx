@@ -6,13 +6,12 @@ import { fetchPostsAsync, selectPosts, selectStatus} from './postsSlice'
 import { PostState, Statuses } from '../enums';
 
 function Posts() {
-  const posts = useAppSelector(selectPosts);
-  const status = useAppSelector(selectStatus);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   useEffect(() => {
       dispatch(fetchPostsAsync());
   }, [])
+  const posts = useAppSelector(selectPosts);
+  const status = useAppSelector(selectStatus);
 
   const [search, setSearch] = useState("");
   const getFilteredPosts = (search: string) => {

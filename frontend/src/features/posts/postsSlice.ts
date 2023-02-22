@@ -37,7 +37,7 @@ import { logout } from "../user/userSlice";
         if (response?.status === 401) {
             logout();
         }
-        fetchPostsAsync();
+        await fetchPostsAsync();
         return response;
     }
  )
