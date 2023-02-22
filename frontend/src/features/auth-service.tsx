@@ -29,3 +29,18 @@ export const login = (loginForm: LoginFormData) => {
     })
 }
 
+export const checkLoggedIn = () => {
+    const token = localStorage.getItem("token");
+    const config = {
+        headers: { Authorization: `Bearer ${token}`}
+    }
+    return axios.get(API_URL + '/users', config)
+        .then((response) => {
+            return response;
+        }).catch((err) => {
+            if (err.response) {
+                return err.response;
+            }
+        });
+}
+

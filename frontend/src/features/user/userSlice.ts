@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import { login } from "../auth-service";
+import { checkLoggedIn, login } from "../auth-service";
 import { UserState, Statuses, LoginFormData } from "../enums";
 
 const initialState: UserState = {
@@ -20,6 +20,17 @@ export const loginAsync = createAsyncThunk(
    }
 )
 
+export const checkLoggedInAsync = createAsyncThunk(
+    'user/checkLogin',
+    async () => {
+        const response = await checkLoggedIn();
+        if (response.status !== 200) {
+            logout();
+        }
+        return response;
+    }
+)
+
 export const userSlice = createSlice({
    name: "user",
    initialState,
@@ -36,7 +47,6 @@ export const userSlice = createSlice({
                state.status = Statuses.Loading;
            })
            .addCase(loginAsync.fulfilled, (state, action) => {
-                console.log(action.payload)
                 if (action.payload.status === 200) {
                     state.user = action.payload.data.user;
                     localStorage.setItem("token", action.payload.data.token)
@@ -46,6 +56,21 @@ export const userSlice = createSlice({
            .addCase(loginAsync.rejected, (state) => {
                state.status = Statuses.Error
            })
+           .addCase(checkLoggedInAsync.pending, (state) => {
+                state.status = Statuses.Loading;
+           })
+           .addCase(checkLoggedInAsync.fulfilled, (state, action) => {
+                if (action.payload.status === 200) {
+                    const userData = action.payload.data;
+                    state.user.id = userData.user_id
+                    state.user.username = userData.user_username;
+                    state.user.email = userData.user_email;
+                }
+                state.status = Statuses.UpToDate;
+                })  
+            .addCase(checkLoggedInAsync.rejected, (state) => {
+                state.status = Statuses.Error
+            })
    }
 });
 

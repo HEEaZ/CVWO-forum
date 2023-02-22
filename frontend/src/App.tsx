@@ -8,8 +8,16 @@ import Logout from './Components/Logout';
 import SinglePost from './Components/SinglePost';
 import Navbar from './Components/Navbar';
 import Profile from './Components/Profile'
+import { useEffect } from 'react';
+import { useAppDispatch } from './app/hooks';
+import { checkLoggedInAsync } from './features/user/userSlice';
 
 function App() {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(checkLoggedInAsync());
+  }, [])
+  
   return (
     <div className='flex h-screen flex-col'>
       <Navbar />
