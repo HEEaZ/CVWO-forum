@@ -59,6 +59,7 @@ export const userSlice = createSlice({
                state.status = Statuses.Loading;
            })
            .addCase(loginAsync.fulfilled, (state, action) => {
+                console.log(action.payload)
                 if (action.payload.status === 200) {
                     state.user = action.payload.data.user;
                     localStorage.setItem("token", action.payload.data.token)

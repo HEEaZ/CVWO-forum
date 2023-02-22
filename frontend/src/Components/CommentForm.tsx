@@ -3,7 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../app/hooks';
 import { createCommentAsync } from '../features/singlePost/singlePostSlice';
 
-function CommentForm(props:any) {
+interface PropState{
+    postId: number
+}
+
+function CommentForm(props:PropState) {
     const [body, setBody] = useState("");
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -29,11 +33,11 @@ function CommentForm(props:any) {
             });
     }
     return (
-        <div>
+        <div className='my-4'>
             <h5>Drop a comment: </h5>
             <form onSubmit={submitHandler}>
-                <input type="text" className="form-control text-start" name="body" value={body} onChange={e => setBody(e.target.value)} />
-                <button type="submit">Submit</button>
+                <textarea className="form-control text-start" name="body" value={body} onChange={e => setBody(e.target.value)} />
+                <button type="submit" className='bg-blue-500 w-max px-2 text-gray-100 py-2 rounded hover:bg-blue-600 transition-colors'>Submit</button>
             </form>
         </div>
       )

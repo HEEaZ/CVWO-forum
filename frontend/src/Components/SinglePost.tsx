@@ -6,6 +6,7 @@ import { Statuses } from '../features/posts/postsSlice';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
 import { selectUser } from '../features/user/userSlice';
+import { MdDeleteOutline } from 'react-icons/md';
 
 function SinglePost() {
   const id = parseInt(useParams().id!);
@@ -27,7 +28,7 @@ function SinglePost() {
       return (
         <div key={comment.id}>
           <Comment comment={comment} />
-      </div>
+        </div>
       )
     });
 
@@ -47,27 +48,30 @@ function SinglePost() {
   } else {
     content = 
     <div>
-        <div>
-            <h1>{post.title}</h1>
+        <div className='my-3 flex justify-between'>
+          <div>
+            <h1 className='text-2xl font-black'>{post.title}</h1>
             <b>By {post.user?.username}</b>
             <p>{createdAt} {updatedAt}</p>
-            <p>{post.body}</p>
+            <p className='my-3'>{post.body}</p>
+          </div>
+          <div className='inline p-2 m-2'>
+            {user.id === post.user_id && 
+            <button onClick={deletePost}><MdDeleteOutline size={42} color='red'/></button>}
+          </div>
         </div>
         <br/>
         <div>
-            <h2>Comments:</h2>
+            <h2 className='text-2xl font-bold'>Comments:</h2>
             {commentsEl}
             {user.id === 0 ? <div><Link to="/login">Log in</Link> to comment</div> : <CommentForm postId={id}/>}
         </div>
-        <div>
-          {user.id === post.user_id && 
-            <button onClick={deletePost}>Delete Post</button>}
-        </div>
+        
     </div>
   }
   
   return (
-    <div>
+    <div className='p-5'>
         {content}
     </div>
   )

@@ -18,7 +18,7 @@ function Profile() {
     const ownPostsEl = ownPosts.length === 0 
         ? <div>You do not have any posts</div>
         : ownPosts.map((post) => (
-            <div key={post.id} style={{margin: "5em"}} onClick={() => handleClick(post.id)}>
+            <div key={post.id} className="my-3">
                 <Post post={post} />
             </div>
         ))

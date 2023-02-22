@@ -23,19 +23,14 @@ function Posts() {
     searchWords?.forEach((word:string) => {
       filtered = filtered.filter((post: PostState) => {
         const stringmass = post.title + post.body + post.user.username + post.tags.toString();
-        return stringmass.includes(word);
+        return stringmass.toLowerCase().includes(word);
       })
     })
     return filtered;
   }
   const filteredItems = getFilteredPosts(search);
 
-  const handleClick = (postId: number) => {
-    navigate(`/posts/${postId}`);
-  }
-  
   let contents;
-
   if (status !== Statuses.UpToDate) {
     contents = <div>{status}</div>
   } else {
@@ -43,7 +38,7 @@ function Posts() {
         <div className="card-body">
             {filteredItems.map(post => {
                 return (
-                    <div key={post.id} style={{margin: "5em"}} onClick={() => handleClick(post.id)}>
+                    <div key={post.id}>
                         <Post 
                             post={post} />
                     </div>
@@ -51,11 +46,13 @@ function Posts() {
             })}
         </div>
   }
-
   return (
-    <div className='card'>
-        <input type="text" onChange={(e) => setSearch(e.target.value)} />
-        {contents}
+    <div>
+      <div className=' flex card-body items-center content-center justify-center'>
+          <input type="text" placeholder='Search for posts here' onChange={(e) => setSearch(e.target.value)}
+            className='w-3/4 self-center p-2 mt-2 mb-0 outline-slate-200 hover:outline-slate-300 border' />
+      </div>
+      {contents}
     </div>
   )
 }

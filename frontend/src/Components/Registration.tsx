@@ -47,52 +47,50 @@ function Registration() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>Register</h1>
-            <div>
-                <div>
-                    <label>Username</label>
-                    <input 
-                        type="text" 
-                        name="username" 
-                        placeholder="Username" 
-                        value={formData.username}
-                        onChange={handleChange}/>
-                    <p>{formErrors.username}</p>
-                </div>
-                <div>
-                    <label>Email</label>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        placeholder="YourEmail@domain.com" 
-                        value={formData.email}
-                        onChange={handleChange}/>
-                    <p>{formErrors.email}</p>
-                </div>
-                <div>
-                    <label>Password</label>
+        <div className='flex items-center justify-center h-screen bg-gray-100'>
+            <form onSubmit={handleSubmit}>
+                <div className='bg-white w-96 p-6 rounded shadow-sm'>
+                    <div className='flex items-center justify-center mb-4'>
+                        <img className='h-32' src="https://st2.depositphotos.com/7752738/11163/v/950/depositphotos_111634948-stock-illustration-concept-of-social-communication-group.jpg" />
+                    </div>
+                    <label className='text-gray-700'>Username</label>
+                    <input
+                        className="w-full py-2 bg-gray-50 text-gray-500 px-1 outline-none mb-0" 
+                        type="text" name="username" placeholder="Username" value={formData.username}
+                        onChange={handleChange}
+                    />
+                    <p className='text-sm mb-4'>{formErrors.username}</p>
+                    <label className='text-gray-700'>Email</label>
+                    <input
+                        className="w-full py-2 bg-gray-50 text-gray-500 px-1 outline-none mb-0" 
+                        type="email" name="email" placeholder="YourEmail@domain.com" value={formData.email}
+                        onChange={handleChange}
+                    />
+                    <p className='text-sm mb-4'>{formErrors.email}</p>
+                    <label className='text-gray-700'>Password</label>
                     <input 
                         type="password" 
                         name="password" 
                         placeholder="Password" 
                         value={formData.password}
-                        onChange={handleChange}/>
-                    <p>{formErrors.password}</p>
-                </div>
-                <div>
-                    <label>Confirm Password</label>
+                        onChange={handleChange}
+                        className="w-full py-2 bg-gray-50 text-gray-500 px-1 outline-none mb-0"
+                    />
+                    <p className='text-sm mb-4'>{formErrors.password}</p>
+                    <label className='text-gray-700'>Password</label>
                     <input 
                         type="password" 
                         name="password_confirmation" 
                         placeholder="Re-enter your password" 
                         value={formData.password_confirmation}
-                        onChange={handleChange}/>
-                    <p>{formErrors.password_confirmation}</p>
+                        onChange={handleChange}
+                        className="w-full py-2 bg-gray-50 text-gray-500 px-1 outline-none mb-0"
+                    />
+                    <p className='text-sm mb-4'>{formErrors.password_confirmation}</p>
+                    <button type="submit" className='bg-blue-500 w-full text-gray-100 py-2 rounded hover:bg-blue-600 transition-colors'>Register</button>
                 </div>
-                <button type="submit">Register</button>
-            </div>
-        </form>
+            </form>
+        </div>
     )
 }
 

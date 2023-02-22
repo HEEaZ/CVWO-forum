@@ -11,7 +11,7 @@ import Profile from './Components/Profile'
 
 function App() {
   return (
-    <>
+    <div className='flex h-screen flex-col'>
       <Navbar />
       <Routes>
         <Route path="/profile" element={ <Profile /> } />
@@ -20,10 +20,10 @@ function App() {
         <Route path="/create" element={ <CreatePost /> } />
         <Route path="/register" element={ <Registration />} />
         <Route path="/logout" element={ <Logout />} />
-        {<Route path="/posts/:id" element={< SinglePost />} />}
+        <Route path="/posts/:id" element={< SinglePost />} />
         {/* <Route path="*" element={ <NotFound /> } /> */}
       </Routes>
-    </>
+    </div>
   );
 }
 
