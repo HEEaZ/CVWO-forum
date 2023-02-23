@@ -44,7 +44,13 @@ function Posts() {
   } else {
     contents = 
         <div className="card-body">
-            {filteredContent}
+            {filteredItems.map(post => {
+              return (
+                <div key={post.id}>
+                  <Post 
+                    post={post} />
+                </div>
+            )})}
         </div>
   }
   return (

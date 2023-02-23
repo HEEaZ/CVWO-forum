@@ -49,7 +49,9 @@
                 state.status = Statuses.Loading;
             })
             .addCase(fetchPostsAsync.fulfilled, (state, action) => {
-                state.posts = action.payload;
+                if (action.payload?.status === 200) {
+                    state.posts = action.payload;
+                }  
                 state.status = Statuses.UpToDate;
             })
             .addCase(fetchPostsAsync.rejected, (state) => {
