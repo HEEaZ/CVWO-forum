@@ -16,7 +16,7 @@ function Login() {
                 if (response.status === 200) {
                     navigate("/");
                 } else {
-                    alert(JSON.stringify(response.data));
+                    alert(response.data.error);
                 }
             });
     }

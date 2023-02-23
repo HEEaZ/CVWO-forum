@@ -59,14 +59,14 @@ function Registration() {
                         type="text" name="username" placeholder="Username" value={formData.username}
                         onChange={handleChange}
                     />
-                    <p className='text-sm mb-4'>{formErrors.username}</p>
+                    <p className='text-sm mb-4 text-red-500'>{formErrors.username}</p>
                     <label className='text-gray-700'>Email</label>
                     <input
                         className="w-full py-2 bg-gray-50 text-gray-500 px-1 outline-none mb-0" 
                         type="email" name="email" placeholder="YourEmail@domain.com" value={formData.email}
                         onChange={handleChange}
                     />
-                    <p className='text-sm mb-4'>{formErrors.email}</p>
+                    <p className='text-sm mb-4 text-red-500'>{formErrors.email}</p>
                     <label className='text-gray-700'>Password</label>
                     <input 
                         type="password" 
@@ -76,7 +76,7 @@ function Registration() {
                         onChange={handleChange}
                         className="w-full py-2 bg-gray-50 text-gray-500 px-1 outline-none mb-0"
                     />
-                    <p className='text-sm mb-4'>{formErrors.password}</p>
+                    <p className='text-sm mb-4 text-red-500'>{formErrors.password}</p>
                     <label className='text-gray-700'>Password</label>
                     <input 
                         type="password" 
@@ -86,7 +86,7 @@ function Registration() {
                         onChange={handleChange}
                         className="w-full py-2 bg-gray-50 text-gray-500 px-1 outline-none mb-0"
                     />
-                    <p className='text-sm mb-4'>{formErrors.password_confirmation}</p>
+                    <p className='text-sm mb-4 text-red-500'>{formErrors.password_confirmation}</p>
                     <button type="submit" className='bg-blue-500 w-full text-gray-100 py-2 rounded hover:bg-blue-600 transition-colors'>Register</button>
                 </div>
             </form>

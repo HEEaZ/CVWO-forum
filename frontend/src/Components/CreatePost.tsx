@@ -60,7 +60,8 @@ function CreatePost() {
                     const postId = response.data.id;
                     navigate(`/posts/${postId}`);
                 } else if (response.status === 422) {
-                    alert(JSON.stringify(response.data));
+                  let [key, value] = Object.entries(response.data)[0];
+                  alert(`${key} ${value}`);
                 } else {
                     navigate("/login");
                 }
