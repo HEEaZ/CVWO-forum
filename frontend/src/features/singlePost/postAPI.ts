@@ -30,5 +30,15 @@ export async function deletePost(postId: number) {
     }
     return axios.delete(`${API_URL}/posts/${postId}`, config)
         .then(response => response.data)
-        .catch(err => err.response)
+        .catch(err => err.response);
+}
+
+export async function deleteComment(postId: number, commentId: number) {
+    const token = localStorage.getItem("token");
+    const config = {
+        headers: { Authorization: `Bearer ${token}`}
+    }
+    return axios.delete(`${API_URL}/posts/${postId}/comments/${commentId}`, config)
+        .then(response => response.data)
+        .catch(err => err.response);
 }

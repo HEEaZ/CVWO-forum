@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState} from '../../app/store';
-import { fetchPost, createComment, deletePost } from './postAPI';
+import { fetchPost, createComment, deletePost, deleteComment } from './postAPI';
 import { logout } from '../user/userSlice';
-import { SinglePostState, Statuses, CommentFormState } from '../enums';
+import { SinglePostState, Statuses, CommentFormState, CommentDeleteState } from '../enums';
 
 
 const initialState: SinglePostState = {
@@ -44,6 +44,14 @@ export const deletePostAsync = createAsyncThunk(
   'singlePost/deletePost',
   async (id: number) => {
     const response = await deletePost(id);
+    return response;
+  }
+)
+
+export const deleteCommentAsync = createAsyncThunk(
+  'singlePost/deleteComment',
+  async (payload: CommentDeleteState) => {
+    const response = await deleteComment(payload.postId, payload.commentId);
     return response;
   }
 )

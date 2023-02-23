@@ -16,10 +16,9 @@ function SinglePost() {
   const userIsLoggedIn = useAppSelector(selectUserLoggedIn);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [refresh, setRefresh] = useState(true);
   useEffect(() => {
     dispatch(fetchPostAsync(id));
-  }, [refresh])
+  }, [])
 
   const createdAt = <span>Created at: {new Date(post.created_at).toDateString()}</span>;
   const updatedAt = post.created_at === post.updated_at ? null : <span>Updated at: {new Date(post.updated_at).toDateString()}</span>;
@@ -29,14 +28,10 @@ function SinglePost() {
     : post.comments?.map((comment) => {
       return (
         <div key={comment.id}>
-          <Comment comment={comment} />
+          <Comment comment={comment} postId={post.id}/>
         </div>
       )
     });
-
-  const toggleRefresh = () => {
-    setRefresh((prevState) => (!prevState));
-  }
 
   const deletePost = (e:React.MouseEvent<HTMLButtonElement>) => {
     dispatch(deletePostAsync(id)).unwrap()
@@ -59,18 +54,18 @@ function SinglePost() {
             <h1 className='text-2xl font-black'>{post.title}</h1>
             <b>By {post.user?.username}</b>
             <p>{createdAt} {updatedAt}</p>
-            <p className='my-3'>{post.body}</p>
           </div>
           <div className='inline p-2 m-2'>
             {user.id === post.user_id && 
-            <button onClick={deletePost}><MdDeleteOutline size={42} color='red'/></button>}
+            <button onClick={deletePost}><MdDeleteOutline size={40} color='red'/></button>}
           </div>
         </div>
+        <p className='my-3'>{post.body}</p>
         <br/>
         <div>
             <h2 className='text-2xl font-bold'>Comments:</h2>
             {commentsEl}
-            {userIsLoggedIn ? <CommentForm postId={id} toggleRefresh={toggleRefresh}/> : <div><Link to="/login">Log in</Link> to comment</div>}
+            {userIsLoggedIn ? <CommentForm postId={id}/> : <div><Link to="/login">Log in</Link> to comment</div>}
         </div>
         
     </div>

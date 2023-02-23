@@ -4,7 +4,6 @@ import { useAppDispatch } from '../app/hooks';
 import { createCommentAsync } from '../features/singlePost/singlePostSlice';
 
 interface PropState{
-    toggleRefresh: () => void,
     postId: number
 }
 
@@ -27,7 +26,7 @@ function CommentForm(props:PropState) {
         await dispatch(createCommentAsync(formData)).unwrap()
             .then((response) => {
                 if (response.status === 201) {
-                    props.toggleRefresh();
+                    window.location.reload();
                 } else {
                     navigate("/login");
                 }

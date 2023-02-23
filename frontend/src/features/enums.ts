@@ -103,3 +103,8 @@ export enum Statuses {
         tags: string[]
     }
  }
+
+ export interface CommentDeleteState {
+    postId: number,
+    commentId: number
+ }
