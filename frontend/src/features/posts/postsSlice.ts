@@ -1,6 +1,5 @@
  import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
  import { RootState } from "../../app/store";
-import { logout } from "../user/userSlice";
  import { fetchPosts, createPost } from "./postsAPI";
  import { PostsState, Statuses, PostFormData } from "../enums";
 

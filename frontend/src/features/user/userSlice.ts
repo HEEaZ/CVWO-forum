@@ -86,14 +86,14 @@ export const userSlice = createSlice({
                 }
             })
             .addCase(deletePostAsync.fulfilled, (state, action) => {
-                if (action.payload.status == 401) {
+                if (action.payload.status === 401) {
                     localStorage.removeItem("token");
                     state.isLoggedIn = false;
                     return initialState;
                 }
             })
             .addCase(createPostAsync.fulfilled, (state, action) => {
-                if (action.payload.status == 401) {
+                if (action.payload.status === 401) {
                     localStorage.removeItem("token");
                     state.isLoggedIn = false;
                     return initialState;

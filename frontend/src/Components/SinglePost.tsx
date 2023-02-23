@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { deletePostAsync, fetchPostAsync, selectSinglePost, selectSinglePostStatus } from '../features/singlePost/singlePostSlice';
 import { useAppSelector, useAppDispatch } from '../app/hooks';
 import { Statuses } from '../features/enums';
@@ -18,7 +18,7 @@ function SinglePost() {
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchPostAsync(id));
-  }, [])
+  }, [dispatch, id])
 
   const createdAt = <span>Created at: {new Date(post.created_at).toDateString()}</span>;
   const updatedAt = post.created_at === post.updated_at ? null : <span>Updated at: {new Date(post.updated_at).toDateString()}</span>;

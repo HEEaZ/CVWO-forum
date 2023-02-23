@@ -16,7 +16,7 @@ function Profile() {
       navigate("/login")
     }
     dispatch(fetchPostsAsync());
-    }, [])
+    }, [dispatch, navigate, userLoggedIn])
 
   const posts = useSelector(selectPosts);
   const ownPosts = posts.filter((post) => post.user_id === user.id);

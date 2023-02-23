@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import Post from './Post';
 import { fetchPostsAsync, selectPosts, selectStatus} from '../features/posts/postsSlice'
@@ -9,7 +8,7 @@ function Posts() {
   const dispatch = useAppDispatch();
   useEffect(() => {
       dispatch(fetchPostsAsync());
-  }, [])
+  }, [dispatch])
   const posts = useAppSelector(selectPosts);
   const status = useAppSelector(selectStatus);
 

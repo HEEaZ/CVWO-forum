@@ -34,7 +34,7 @@ function Login() {
             <form onSubmit={handleSubmit}>
                 <div className='bg-white w-96 p-6 rounded shadow-sm'>
                     <div className='flex items-center justify-center mb-4'>
-                        <img className='h-32' src="https://st2.depositphotos.com/7752738/11163/v/950/depositphotos_111634948-stock-illustration-concept-of-social-communication-group.jpg" />
+                        <img alt="logo" className='h-32' src="https://st2.depositphotos.com/7752738/11163/v/950/depositphotos_111634948-stock-illustration-concept-of-social-communication-group.jpg" />
                     </div>
                     <label className='text-gray-700'>Username</label>
                     <input

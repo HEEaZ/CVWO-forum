@@ -17,7 +17,7 @@ function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(checkLoggedInAsync());
-  }, [])
+  }, [dispatch])
   
   return (
     <div className='flex h-screen flex-col'>
