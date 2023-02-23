@@ -80,10 +80,10 @@ function CreatePost() {
                 <textarea className="form-control text-start" name="body" value={body} onChange={handleChange}/>
             </div>
             <div className='my-2'>
-                <label>Tags</label>
+                <label>Tags:</label>
                 {tags.length < 5 && 
                     <div className='align-middle'>
-                        <input className="align-middle form-control text-start w-1/4 inline" type="text" name="tag" value={tag} onChange={handleChange} />
+                        <input className="align-middle form-control text-start w-24 inline" type="text" name="tag" value={tag} onChange={handleChange} />
                         <button onClick={handleAddTagClick} className="cursor-pointer align-middle p-1 mx-1"><GoDiffAdded size={30} color='green'/></button>
                     </div>
                 }

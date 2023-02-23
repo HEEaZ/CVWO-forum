@@ -43,12 +43,6 @@ function SinglePost() {
       })
   }
 
-  const tagElement = post.tags.map((tag: string, index: number) => {
-    return (
-        <span key={index} className="bg-green-400 px-2 py-1 mx-1 rounded-md text-xs text-white">{tag}</span>
-    );
-  })
-
   let content;
   if (status !== Statuses.UpToDate) {
     content = <div>{status}</div>
@@ -71,7 +65,7 @@ function SinglePost() {
           {
             post.tags.map((tag: string, index: number) => {
               return (
-                  <span key={index} className="bg-green-400 px-2 py-1 mx-1 rounded-md text-xs text-white">{tag}</span>
+                  <span key={index} className="bg-green-400 px-2 py-1 mx-1 rounded-md text-base text-white">{tag}</span>
               );
             })
           }
