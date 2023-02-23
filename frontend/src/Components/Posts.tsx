@@ -27,7 +27,16 @@ function Posts() {
     })
     return filtered;
   }
-  const filteredItems = getFilteredPosts(search);
+  const filteredItems = getFilteredPosts(search)
+  const filteredContent = filteredItems === null 
+    ? <></> 
+    : filteredItems.map(post => {
+      return (
+          <div key={post.id}>
+              <Post 
+                  post={post} />
+          </div>
+      )})
 
   let contents;
   if (status !== Statuses.UpToDate) {
@@ -35,14 +44,7 @@ function Posts() {
   } else {
     contents = 
         <div className="card-body">
-            {filteredItems && filteredItems.map(post => {
-                return (
-                    <div key={post.id}>
-                        <Post 
-                            post={post} />
-                    </div>
-                )
-            })}
+            {filteredContent}
         </div>
   }
   return (
