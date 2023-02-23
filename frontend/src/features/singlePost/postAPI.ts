@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CommentFormState, SinglePostState } from "../enums";
+import { CommentFormState } from "../enums";
 import { API_URL } from "../../app/env";
 
 export async function fetchPost(postId: number) {
