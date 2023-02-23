@@ -48,7 +48,7 @@ export const userSlice = createSlice({
                state.status = Statuses.Loading;
            })
            .addCase(loginAsync.fulfilled, (state, action) => {
-                if (action.payload.status === 200) {
+                if (action.payload?.status === 200) {
                     state.user = action.payload.data.user;
                     state.isLoggedIn = true;
                     localStorage.setItem("token", action.payload.data.token)
@@ -62,7 +62,7 @@ export const userSlice = createSlice({
                 state.status = Statuses.Loading;
            })
            .addCase(checkLoggedInAsync.fulfilled, (state, action) => {
-                if (action.payload.status === 200) {
+                if (action.payload?.status === 200) {
                     const userData = action.payload.data;
                     state.user.id = userData.user_id
                     state.user.username = userData.user_username;
@@ -79,21 +79,21 @@ export const userSlice = createSlice({
                 state.status = Statuses.Error
             })
             .addCase(createCommentAsync.fulfilled, (state, action) => {
-                if (action.payload.status === 401) {
+                if (action.payload?.status === 401) {
                     localStorage.removeItem("token");
                     state.isLoggedIn = false;
                     return initialState;
                 }
             })
             .addCase(deletePostAsync.fulfilled, (state, action) => {
-                if (action.payload.status === 401) {
+                if (action.payload?.status === 401) {
                     localStorage.removeItem("token");
                     state.isLoggedIn = false;
                     return initialState;
                 }
             })
             .addCase(createPostAsync.fulfilled, (state, action) => {
-                if (action.payload.status === 401) {
+                if (action.payload?.status === 401) {
                     localStorage.removeItem("token");
                     state.isLoggedIn = false;
                     return initialState;
