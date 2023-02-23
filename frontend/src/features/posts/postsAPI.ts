@@ -1,4 +1,4 @@
-import { PostFormData, PostState } from "../enums";
+import { PostFormData } from "../enums";
 import axios from "axios";
 import { API_URL } from "../../app/env";
 
