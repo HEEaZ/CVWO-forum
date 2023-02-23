@@ -69,7 +69,7 @@ export const singlePostSlice = createSlice({
       })
       .addCase(fetchPostAsync.fulfilled, (state, action) => {
         if (action.payload?.status === 200) {
-          state.post = action.payload;
+          state.post = action.payload.data;
         }
         state.status = Statuses.UpToDate;
       })

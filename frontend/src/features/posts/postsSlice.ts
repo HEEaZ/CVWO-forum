@@ -50,7 +50,7 @@
             })
             .addCase(fetchPostsAsync.fulfilled, (state, action) => {
                 if (action.payload?.status === 200) {
-                    state.posts = action.payload;
+                    state.posts = action.payload.data;
                 }  
                 state.status = Statuses.UpToDate;
             })

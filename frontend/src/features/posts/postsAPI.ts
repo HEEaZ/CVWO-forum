@@ -4,7 +4,7 @@ import { API_URL } from "../../app/env";
 
 export async function fetchPosts() {
     return axios.get(`${API_URL}/posts`)
-        .then(response => response.data)
+        .then(response => response)
         .catch(error => {
             return error.response;
         });
