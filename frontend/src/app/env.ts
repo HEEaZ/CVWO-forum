@@ -1,1 +1,1 @@
-export const API_URL = `https://forum-aut0.onrender.com/`
+export const API_URL = `https://forum-aut0.onrender.com`
