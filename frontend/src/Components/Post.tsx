@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { PostState } from "../enums";
+import { PostState } from "../features/enums";
 
 interface PropState {
     post: PostState

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { fetchPostsAsync, selectPosts } from "../features/posts/postsSlice";
 import { selectUser, selectUserLoggedIn } from "../features/user/userSlice";
-import Post from "../features/posts/Post";
+import Post from "./Post";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAppDispatch } from "../app/hooks";
