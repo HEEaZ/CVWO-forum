@@ -1,6 +1,6 @@
 import React, {useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { signUp } from '../features/auth-service';
+import { signUp } from '../features/user/auth-service';
 import { UserFormData } from '../features/enums';
 
 function Registration() {

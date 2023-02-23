@@ -8,6 +8,7 @@ import Logout from './Components/Logout';
 import SinglePost from './Components/SinglePost';
 import Navbar from './Components/Navbar';
 import Profile from './Components/Profile'
+import NotFound from './Components/NotFound';
 import { useEffect } from 'react';
 import { useAppDispatch } from './app/hooks';
 import { checkLoggedInAsync } from './features/user/userSlice';
@@ -29,7 +30,7 @@ function App() {
         <Route path="/register" element={ <Registration />} />
         <Route path="/logout" element={ <Logout />} />
         <Route path="/posts/:id" element={< SinglePost />} />
-        {/* <Route path="*" element={ <NotFound /> } /> */}
+        <Route path="*" element={ <NotFound /> } />
       </Routes>
     </div>
   );

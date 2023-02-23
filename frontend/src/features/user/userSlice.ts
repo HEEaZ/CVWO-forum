@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import { checkLoggedIn, login } from "../auth-service";
+import { checkLoggedIn, login } from "./auth-service";
 import { UserData, UserState, Statuses, LoginFormData } from "../enums";
 import { createPostAsync } from "../posts/postsSlice";
 import { createCommentAsync, deletePostAsync } from "../singlePost/singlePostSlice";
