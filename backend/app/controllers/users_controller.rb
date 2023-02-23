@@ -2,10 +2,6 @@ class UsersController < ApplicationController
     skip_before_action :authenticate_request, only: [:create]
     before_action :set_user, only: [:show, :destroy]
 
-    def index
-        render json: @current_user, status: :ok
-    end
-
     def show
         render json: @user, include: :posts, status: :ok
     end

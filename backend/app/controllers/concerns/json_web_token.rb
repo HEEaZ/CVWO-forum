@@ -1,5 +1,5 @@
 require "jwt"
-TIMEOUT = 6.hour.from_now
+TIMEOUT = 3.hour.from_now
 
 module JsonWebToken
     extend ActiveSupport::Concern
@@ -17,7 +17,6 @@ module JsonWebToken
         rescue JWT::DecodeError
             return false
         end
-
     end
 end
         

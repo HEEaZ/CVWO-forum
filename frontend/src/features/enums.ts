@@ -6,6 +6,7 @@ export interface UserData {
 
 export interface UserState {
     user: UserData,
+    isLoggedIn: Boolean,
     status: string
 }
 

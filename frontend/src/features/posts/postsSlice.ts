@@ -34,10 +34,7 @@ import { logout } from "../user/userSlice";
     'posts/createPost',
     async (payload: PostFormData) => {
         const response = await createPost(payload);
-        if (response?.status === 401) {
-            logout();
-        }
-        await fetchPostsAsync();
+        fetchPostsAsync();
         return response;
     }
  )

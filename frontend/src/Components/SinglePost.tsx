@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from '../app/hooks';
 import { Statuses } from '../features/enums';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
-import { selectUser } from '../features/user/userSlice';
+import { selectUser, selectUserLoggedIn } from '../features/user/userSlice';
 import { MdDeleteOutline } from 'react-icons/md';
 
 function SinglePost() {
@@ -13,6 +13,7 @@ function SinglePost() {
   const post = useAppSelector(selectSinglePost);
   const status = useAppSelector(selectSinglePostStatus);
   const user = useAppSelector(selectUser);
+  const userIsLoggedIn = useAppSelector(selectUserLoggedIn);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [refresh, setRefresh] = useState(true);
@@ -69,7 +70,7 @@ function SinglePost() {
         <div>
             <h2 className='text-2xl font-bold'>Comments:</h2>
             {commentsEl}
-            {user.id === 0 ? <div><Link to="/login">Log in</Link> to comment</div> : <CommentForm postId={id} toggleRefresh={toggleRefresh}/>}
+            {userIsLoggedIn ? <CommentForm postId={id} toggleRefresh={toggleRefresh}/> : <div><Link to="/login">Log in</Link> to comment</div>}
         </div>
         
     </div>

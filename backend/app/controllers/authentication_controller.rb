@@ -1,5 +1,5 @@
 class AuthenticationController < ApplicationController
-    skip_before_action :authenticate_request
+    skip_before_action :authenticate_request, only: [:login]
 
     def login
         @user = User.find_by_username(params[:username])
@@ -9,5 +9,9 @@ class AuthenticationController < ApplicationController
         else
             render json: { error: 'Invalid Credentials' }, status: :unauthorized
         end
+    end
+
+    def checkLogin
+        render json: @current_user, status: :ok
     end
 end

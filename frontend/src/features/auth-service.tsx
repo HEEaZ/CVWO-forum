@@ -34,7 +34,7 @@ export const checkLoggedIn = () => {
     const config = {
         headers: { Authorization: `Bearer ${token}`}
     }
-    return axios.get(API_URL + '/users', config)
+    return axios.post(API_URL + '/checkLogin', {}, config)
         .then((response) => {
             return response;
         }).catch((err) => {

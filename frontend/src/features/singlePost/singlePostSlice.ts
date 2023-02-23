@@ -4,6 +4,7 @@ import { fetchPost, createComment, deletePost } from './postAPI';
 import { logout } from '../user/userSlice';
 import { SinglePostState, Statuses, CommentFormState } from '../enums';
 
+
 const initialState: SinglePostState = {
   post: {id: 0, title: "", body: "", user_id: 0, created_at: "", updated_at: "", user: {username: ""}, tags: []},
   status: Statuses.Initial,
@@ -35,9 +36,6 @@ export const createCommentAsync = createAsyncThunk(
     'singlePost/createComment',
     async (payload: CommentFormState) => {
         const response = await createComment(payload);
-        if (response.status === 401) {
-          logout();
-        }
         return response;
     }
 )
@@ -46,9 +44,6 @@ export const deletePostAsync = createAsyncThunk(
   'singlePost/deletePost',
   async (id: number) => {
     const response = await deletePost(id);
-    if (response?.status === 401) {
-      logout();
-    } 
     return response;
   }
 )
