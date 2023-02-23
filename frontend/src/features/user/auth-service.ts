@@ -1,7 +1,6 @@
 import axios from "axios";
 import { UserFormData, LoginFormData } from "../enums";
-
-const API_URL = "http://localhost:3000";
+import { API_URL } from "../../app/env";
 
 export const signUp = async (userForm:UserFormData) => {
     return axios.post(

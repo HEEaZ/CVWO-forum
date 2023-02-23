@@ -1,7 +1,6 @@
 import axios from "axios";
 import { CommentFormState, SinglePostState } from "../enums";
-
-const API_URL = "http://localhost:3000";
+import { API_URL } from "../../app/env";
 
 export async function fetchPost(postId: number) {
     return axios.get(`${API_URL}/posts/${postId}`)
