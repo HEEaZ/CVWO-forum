@@ -6,4 +6,6 @@ See project specifications and planning at specifications.pdf
 
 See deployed application demo at [https://youtu.be/tcg3XR1ZkzQ](https://youtu.be/tcg3XR1ZkzQ)
 
-Note: deployment has been taken down, due to inactivity.
+Try it out: [https://main--tangerine-donut-c67ba3.netlify.app/](https://main--tangerine-donut-c67ba3.netlify.app/)
+
+Note: Latest deployment expires on 18 July 2024. After which, render database instance will be deleted, and the app will malfunction.
